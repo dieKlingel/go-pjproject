@@ -1,0 +1,25 @@
+name: Build binaries
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - name: Copy config file
+        run: |
+          cp config/darwin.config_site.h 3rdparty/pjproject/pjlib/include/pj/config_site.h
+      - name: Build
+        working-directory: 3rdparty/pjproject
+        run: |
+          ./configure
+          make dep
+          make
+      - uses: actions/upload-artifact@v4
+        with:
+          name: darwin-arm64
+          path: ./**/*.a
