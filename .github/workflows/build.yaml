@@ -5,21 +5,47 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - darwin
+        arch:
+          - arm64
+          - amd64
+        include:
+          - os: darwin
+            arch: arm64
+            runner: macos-latest
+            configure: CFLAGS="-arch x86_64" LDFLAGS="-arch x86_64" ./configure --host=x86_64-apple-darwin
+          - os: darwin
+            arch: amd64
+            runner: macos-latest
+            configure: ./configure
+
+    runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v5
         with:
           submodules: recursive
       - name: Copy config file
         run: |
-          cp config/darwin.config_site.h 3rdparty/pjproject/pjlib/include/pj/config_site.h
-      - name: Build
+          cp config/${{ matrix.os }}.config_site.h 3rdparty/pjproject/pjlib/include/pj/config_site.h
+      - name: Configure
+        working-directory: 3rdparty/pjproject
+        run: ${{ matrix.configure }}
+      - name: make dep
+        working-directory: 3rdparty/pjproject
+        run: make dep
+      - name: make
+        working-directory: 3rdparty/pjproject
+        run: make
+      - name: Copy libs
         working-directory: 3rdparty/pjproject
         run: |
-          ./configure
-          make dep
-          make
+          ls ./**/*.a
+          cp ./**/*.a ../../dist
       - uses: actions/upload-artifact@v4
         with:
-          name: darwin-arm64
-          path: ./**/*.a
+          name: ${{ matrix.os }}-${{ matrix.arch }}
+          path: dist
