@@ -17,11 +17,11 @@ jobs:
           - os: darwin
             arch: arm64
             runner: macos-latest
-            configure: ./configure
+            configure: CXXFLAGS="-mmacosx-version-min=11.3" ./configure
           - os: darwin
             arch: amd64
             runner: macos-latest
-            configure: CFLAGS="-arch x86_64" LDFLAGS="-arch x86_64" ./configure --host=x86_64-apple-darwin
+            configure: CFLAGS="-arch x86_64" CXXFLAGS="-mmacosx-version-min=11.3" LDFLAGS="-arch x86_64" ./configure --host=x86_64-apple-darwin
 
     runs-on: ${{ matrix.runner }}
     steps:
