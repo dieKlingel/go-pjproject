@@ -17,11 +17,11 @@ jobs:
           - os: darwin
             arch: arm64
             runner: macos-latest
-            configure: CFLAGS="-arch x86_64" LDFLAGS="-arch x86_64" ./configure --host=x86_64-apple-darwin
+            configure: ./configure
           - os: darwin
             arch: amd64
             runner: macos-latest
-            configure: ./configure
+            configure: CFLAGS="-arch x86_64" LDFLAGS="-arch x86_64" ./configure --host=x86_64-apple-darwin
 
     runs-on: ${{ matrix.runner }}
     steps:
@@ -41,10 +41,10 @@ jobs:
         working-directory: 3rdparty/pjproject
         run: make
       - name: Copy libs
-        working-directory: 3rdparty/pjproject
         run: |
-          ls ./**/*.a
-          cp ./**/*.a ../../dist
+          ls 3rdparty/pjproject/**/**/*.a
+          mkdir -p dist
+          cp 3rdparty/pjproject/**/**/*.a dist
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-${{ matrix.arch }}
