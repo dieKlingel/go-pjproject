@@ -26,11 +26,11 @@ jobs:
           - os: linux
             arch: arm64
             runner: ubuntu-24.04-arm
-            configure: ./configure
+            configure: CFLAGS="-D_GNU_SOURCE -D__GLIBC_USE_ISOC2X=0" ./configure
           - os: linux
             arch: amd64
             runner: ubuntu-24.04
-            configure: ./configure
+            configure: CFLAGS="-D_GNU_SOURCE -D__GLIBC_USE_ISOC2X=0" ./configure
 
     runs-on: ${{ matrix.runner }}
     steps:
