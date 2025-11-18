@@ -13,5 +13,7 @@ func main() {
 	endpoint.LibInit(config)
 	endpoint.LibStart()
 
-	fmt.Println("Hello World")
+	fmt.Println("An example PJSUA2 App")
+
+	endpoint.LibDestroy()
 }
