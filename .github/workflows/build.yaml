@@ -10,6 +10,7 @@ jobs:
       matrix:
         os:
           - darwin
+          - linux
         arch:
           - arm64
           - amd64
@@ -22,6 +23,14 @@ jobs:
             arch: amd64
             runner: macos-latest
             configure: CFLAGS="-arch x86_64" CXX_FLAGS="--mmacosx-version-min=11.3" LDFLAGS="-arch x86_64" ./configure --host=x86_64-apple-darwin
+          - os: linux
+            arch: arm64
+            runner: ubuntu-24.04-arm
+            configure: ./configure
+          - os: linux
+            arch: amd64
+            runner: ubuntu-24.04
+            configure: ./configure
 
     runs-on: ${{ matrix.runner }}
     steps:
