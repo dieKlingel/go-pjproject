@@ -19,9 +19,11 @@
       default = pkgs.mkShell {
         packages = [
           pkgs.go
+          pkgs.swig
           pkgs.pkg-config
           pkgs.pjsip
-          pkgs.swig
+          pkgs.openssl
+          pkgs.alsa-lib
         ];
       };
     });

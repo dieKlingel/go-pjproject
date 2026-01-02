@@ -16,26 +16,9 @@
         "type": "github"
       }
     },
-    "pjproject-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1766543509,
-        "narHash": "sha256-bOmzwWZFWEsHA5uwrUWSoTEm0NrxqBSJN2BFHjbza3I=",
-        "owner": "pjsip",
-        "repo": "pjproject",
-        "rev": "9ffdbd7f0be340b306585b95b69c9f70c65e4389",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pjsip",
-        "repo": "pjproject",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "pjproject-src": "pjproject-src",
         "systems": "systems"
       }
     },
