@@ -45,20 +45,6 @@ class SwigDirector_AudioMediaPlayer : public pj::AudioMediaPlayer
   Swig_memory *swig_mem;
 };
 
-class SwigDirector_VideoRecorder : public pj::VideoRecorder
-{
- public:
-  SwigDirector_VideoRecorder(int swig_p);
-  void _swig_upcall_onMaxSize() {
-    pj::VideoRecorder::onMaxSize();
-  }
-  virtual void onMaxSize();
-  virtual ~SwigDirector_VideoRecorder();
- private:
-  intgo go_val;
-  Swig_memory *swig_mem;
-};
-
 class SwigDirector_Buddy : public pj::Buddy
 {
  public:
@@ -68,18 +54,10 @@ class SwigDirector_Buddy : public pj::Buddy
     pj::Buddy::onBuddyState();
   }
   virtual void onBuddyState();
-  void _swig_upcall_onBuddyDlgEventState() {
-    pj::Buddy::onBuddyDlgEventState();
-  }
-  virtual void onBuddyDlgEventState();
   void _swig_upcall_onBuddyEvSubState(pj::OnBuddyEvSubStateParam &prm) {
     pj::Buddy::onBuddyEvSubState(prm);
   }
   virtual void onBuddyEvSubState(pj::OnBuddyEvSubStateParam &prm);
-  void _swig_upcall_onBuddyEvSubDlgEventState(pj::OnBuddyEvSubStateParam &prm) {
-    pj::Buddy::onBuddyEvSubDlgEventState(prm);
-  }
-  virtual void onBuddyEvSubDlgEventState(pj::OnBuddyEvSubStateParam &prm);
  private:
   intgo go_val;
   Swig_memory *swig_mem;
@@ -187,10 +165,6 @@ class SwigDirector_Call : public pj::Call
     pj::Call::onDtmfEvent(prm);
   }
   virtual void onDtmfEvent(pj::OnDtmfEventParam &prm);
-  void _swig_upcall_onCallRxText(pj::OnCallRxTextParam &prm) {
-    pj::Call::onCallRxText(prm);
-  }
-  virtual void onCallRxText(pj::OnCallRxTextParam &prm);
   void _swig_upcall_onCallTransferRequest(pj::OnCallTransferRequestParam &prm) {
     pj::Call::onCallTransferRequest(prm);
   }
@@ -308,14 +282,6 @@ class SwigDirector_Endpoint : public pj::Endpoint
     pj::Endpoint::onRejectedIncomingCall(prm);
   }
   virtual void onRejectedIncomingCall(pj::OnRejectedIncomingCallParam &prm);
-  void _swig_upcall_onAudioMediaOpCompleted(pj::OnAudioMediaOpCompletedParam &prm) {
-    pj::Endpoint::onAudioMediaOpCompleted(prm);
-  }
-  virtual void onAudioMediaOpCompleted(pj::OnAudioMediaOpCompletedParam &prm);
-  void _swig_upcall_onVideoMediaOpCompleted(pj::OnVideoMediaOpCompletedParam &prm) {
-    pj::Endpoint::onVideoMediaOpCompleted(prm);
-  }
-  virtual void onVideoMediaOpCompleted(pj::OnVideoMediaOpCompletedParam &prm);
  private:
   intgo go_val;
   Swig_memory *swig_mem;

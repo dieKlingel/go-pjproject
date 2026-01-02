@@ -1,4 +1,0 @@
-package pjsua2
-
-// #cgo LDFLAGS: -L./../lib/linux-arm64 -lpjsua2-aarch64-unknown-linux-gnu -lstdc++ -lpjsua-aarch64-unknown-linux-gnu -lpjsip-ua-aarch64-unknown-linux-gnu -lpjsip-simple-aarch64-unknown-linux-gnu -lpjsip-aarch64-unknown-linux-gnu -lpjmedia-codec-aarch64-unknown-linux-gnu -lpjmedia-videodev-aarch64-unknown-linux-gnu -lpjmedia-audiodev-aarch64-unknown-linux-gnu -lpjmedia-aarch64-unknown-linux-gnu -lpjnath-aarch64-unknown-linux-gnu -lpjlib-util-aarch64-unknown-linux-gnu -lpj-aarch64-unknown-linux-gnu -lsrtp-aarch64-unknown-linux-gnu -lresample-aarch64-unknown-linux-gnu -lgsmcodec-aarch64-unknown-linux-gnu -lspeex-aarch64-unknown-linux-gnu -lilbccodec-aarch64-unknown-linux-gnu -lg7221codec-aarch64-unknown-linux-gnu -lyuv-aarch64-unknown-linux-gnu -lwebrtc-aarch64-unknown-linux-gnu -lssl -lcrypto -luuid -lm -lrt -lpthread
-import "C"
