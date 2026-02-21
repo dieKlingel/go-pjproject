@@ -19,6 +19,7 @@
       default = pkgs.mkShell {
         packages = [
           pkgs.go
+          pkgs.go-task
           pkgs.swig
           pkgs.pkg-config
           pkgs.pjsip

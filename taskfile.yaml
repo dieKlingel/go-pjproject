@@ -1,0 +1,40 @@
+version: "3"
+
+tasks:
+  gen:
+    desc: "Regenerate bindings for a specific pj version"  
+    cmds:
+      - bash v2/build/generate.sh
+
+  pj:patch:latest:
+    desc: "Patch pjproject to the latest pjproject version"
+    cmds:
+      - |
+        latest=$(task pj:version:latest)
+        current=$(task pj:version)
+        if [ "$latest" = "$current" ]; then
+          echo "pjproject is already at the latest version (${current}), skipping patching."
+          exit 0
+        fi
+        echo "Patching pjproject from version ${current} to ${latest}"
+        cd v2/3rdparty/pjproject
+        git fetch --tags
+        git checkout "${latest}"
+
+  pj:version:
+    desc: "Get the current pjproject version"
+    silent: true
+    cmds:
+      - |
+        cd v2/3rdparty/pjproject
+        export PJ_VERSION=$(git describe --tags --abbrev=0)
+        echo "${PJ_VERSION}"
+
+  pj:version:latest:
+    desc: "Get the latest pjproject version"
+    silent: true
+    cmds:
+      - |
+        cd v2/3rdparty/pjproject
+        export PJ_VERSION_LATEST=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1))
+        echo "${PJ_VERSION_LATEST}"
