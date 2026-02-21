@@ -33,6 +33,9 @@ Here you can find an overview from which [pjproject](https://github.com/pjsip/pj
 | dieklingel/go-pjproject | pjsip/pjproject |
 |-------------------------|-----------------|
 | v1.0.0                  | 2.14.1          |
+| v1.0.1                  | 2.15            |
+| v1.0.2                  | 2.15.1          |
+
 
 ## Develop
 
