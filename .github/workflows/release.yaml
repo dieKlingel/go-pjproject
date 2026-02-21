@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'v*/VERSION'
+      - 'VERSION'
 
 permissions:
   contents: write
@@ -23,17 +23,14 @@ jobs:
           git config --global user.email "$(git show -s --format='%ce' HEAD)"
           git config --global user.name "$(git show -s --format='%cn' HEAD)"
 
-          for file in v*/VERSION; do
-            echo "Processing $file"
-            VERSION=$(cat "$file")
-            if git rev-parse "$VERSION" >/dev/null 2>&1; then
-              echo "Tag v$VERSION already exists, skipping tag creation."
-            else
-              git tag "$VERSION" -m "Release v$VERSION"
-              git push origin "$VERSION"
-              echo "Tag v$VERSION created and pushed."
-            fi
-          done
+          VERSION=$(cat VERSION)
+          if git rev-parse "$VERSION" >/dev/null 2>&1; then
+            echo "Tag v$VERSION already exists, skipping tag creation."
+          else
+            git tag "$VERSION" -m "Release v$VERSION"
+            git push origin "$VERSION"
+            echo "Tag v$VERSION created and pushed."
+          fi
 
   release:
     runs-on: ubuntu-latest

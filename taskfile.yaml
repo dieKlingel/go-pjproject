@@ -1,13 +1,10 @@
 version: "3"
 
-env:
-  MAJOR_VERSION: "v1"
-
 tasks:
   gen:
     desc: "Regenerate bindings for a specific pj version"  
     cmds:
-      - bash $MAJOR_VERSION/build/generate.sh
+      - bash build/generate.sh
 
   pj:patch:latest:
     desc: "Patch pjproject to the latest pjproject version"
@@ -20,7 +17,7 @@ tasks:
           exit 0
         fi
         echo "Patching pjproject from version ${current} to ${latest}"
-        cd $MAJOR_VERSION/3rdparty/pjproject
+        cd 3rdparty/pjproject
         git fetch --tags
         git checkout "${latest}"
 
@@ -29,7 +26,7 @@ tasks:
     silent: true
     cmds:
       - |
-        cd $MAJOR_VERSION/3rdparty/pjproject
+        cd 3rdparty/pjproject
         export PJ_VERSION=$(git describe --tags --abbrev=0)
         echo "${PJ_VERSION}"
 
@@ -38,6 +35,6 @@ tasks:
     silent: true
     cmds:
       - |
-        cd $MAJOR_VERSION/3rdparty/pjproject
+        cd 3rdparty/pjproject
         export PJ_VERSION_LATEST=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1))
         echo "${PJ_VERSION_LATEST}"

@@ -5,12 +5,12 @@ Go Bindings for [pjsua2](https://github.com/pjsip/pjproject)
 ## Getting Started
 
 ```sh
-go get github.com/dieklingel/go-pjproject/v2
+go get github.com/dieklingel/go-pjproject
 ```
 
 ```go
 import (
-	"github.com/dieklingel/go-pjproject/v2/pjsua2"
+	"github.com/dieklingel/go-pjproject/pjsua2"
 )
 
 func main() {
@@ -33,7 +33,7 @@ func main() {
 1. Checkout the pjproject version, for which bindings should be generated.
 
 ```sh
-cd v2/3rdparty/pjproject
+cd 3rdparty/pjproject
 git checkout 2.16
 cd ../../../
 ```
