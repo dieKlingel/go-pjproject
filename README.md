@@ -26,6 +26,14 @@ func main() {
 }
 ```
 
+## PJ-Version Compability
+
+Here you can find an overview from which [pjproject](https://github.com/pjsip/pjproject) version the [go-pjproject](https://github.com/dieklingel/go-pjproject) was generated
+
+| dieklingel/go-pjproject | pjsip/pjproject |
+|-------------------------|-----------------|
+| v1.0.0                  | 2.14.1          |
+
 ## Develop
 
 ### Generate Bindings
@@ -35,7 +43,7 @@ func main() {
 ```sh
 cd 3rdparty/pjproject
 git checkout 2.16
-cd ../../../
+cd ../../
 ```
 
 2. Generate Bindings
